@@ -8,10 +8,14 @@ def get_retriever():
     vector_store = load_vector_store(embeddings)
 
     retriever = vector_store.as_retriever(
-        search_type="similarity",
-        search_kwargs={"k": 5}
-    )
-
+    search_type="mmr",   # IMPORTANT (not similarity)
+    search_kwargs={
+        "k": 3,
+        "fetch_k": 10,
+        "lambda_mult": 0.7,
+        "filter": {"source": "data/IPL_LangGraph_RAG_Dataset.pdf"}
+    }
+)
     return retriever
 
 
