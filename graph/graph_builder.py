@@ -28,8 +28,10 @@ def build_graph():
     graph.add_node("form", form_node)
     graph.add_node("h2h", h2h_node)
     graph.add_node("records", records_node)
-
+    
     graph.add_node("synthesis", synthesis_node)
+    graph.add_edge("records", "synthesis")
+    
 
     graph.set_conditional_entry_point(
         route_query,

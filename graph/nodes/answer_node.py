@@ -9,8 +9,14 @@ client = Groq(
 )
 
 def answer_node(state):
-
+    print("Executing Answer Node")
     context = state["context"]
+
+    if not context.strip():
+        state["final_answer"] = (
+            "No relevant information found in the knowledge base."
+        )
+        return state
 
     prompt = f"""
 Context:
@@ -33,8 +39,7 @@ Answer only from the provided context.
     )
 
     state["final_answer"] = (
-        response.choices[0]
-        .message.content
+        response.choices[0].message.content
     )
 
     return state

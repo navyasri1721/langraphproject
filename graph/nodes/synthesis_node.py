@@ -1,4 +1,5 @@
 def synthesis_node(state):
+    print("Executing Synthesis Node")
 
     docs = state["retrieved_context"]
 
